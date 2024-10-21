@@ -1,4 +1,7 @@
--- Expressçao SQL para criar banco de dados
+-- Expressão SQL para criar banco de dados
+
+--himalaia foda
+
 CREATE DATABASE sistema_cadastro;
 
 -- Expressão SQL para informar à IDE que este é o banco que estará em uso.
