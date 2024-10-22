@@ -1,20 +1,19 @@
--- Expressão SQL para criar banco de dados
+DROP DATABASE IF EXISTS sistema_cadastro;
 
---himalaia foda
-
+-- criar banco de dados
 CREATE DATABASE sistema_cadastro;
 
--- Expressão SQL para informar à IDE que este é o banco que estará em uso.
+-- informar à IDE que este é o banco que estará em uso.
 USE sistema_cadastro;
 
--- Expressão SQL para criar a tabela de usuários
+-- criar a tabela de usuários
 CREATE TABLE usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
     usuario VARCHAR(50) NOT NULL,
     senha VARCHAR(255) NOT NULL
 );
 
--- Expressão SQL para criar a tabela de formecedores
+-- criar a tabela de formecedores
 CREATE TABLE fornecedores (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -22,7 +21,7 @@ CREATE TABLE fornecedores (
     telefone VARCHAR(20)
 );
 
--- Expressão SQL para criar a tabela de produtos relacionada via FK com a tabela de fornecedores
+-- criar a tabela de produtos relacionada via FK com a tabela de fornecedores
 CREATE TABLE produtos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     fornecedor_id INT,
@@ -32,7 +31,15 @@ CREATE TABLE produtos (
     FOREIGN KEY (fornecedor_id) REFERENCES fornecedores(id)
 );
 
--- Expressão SQL para cadastrar um usuário
+-- cadastrar um usuário
 INSERT INTO usuarios (usuario, senha) VALUES ('admin', MD5('admin123'));
+INSERT INTO usuarios (usuario, senha) VALUES ('ramon', MD5('ramon123'));
+INSERT INTO usuarios (usuario, senha) VALUES ('giba', MD5('giba123'));
+INSERT INTO usuarios (usuario, senha) VALUES ('paulão', MD5('paulão123'));
+INSERT INTO usuarios (usuario, senha) VALUES ('alves', MD5('alves123'));
+INSERT INTO usuarios (usuario, senha) VALUES ('marcos', MD5('marcos123'));
 
+-- check concluido
 ALTER TABLE produtos ADD COLUMN concluido TINYINT(1) DEFAULT 0;
+
+
