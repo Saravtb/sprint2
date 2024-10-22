@@ -23,19 +23,72 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="css/estilo.css">
+    <style>
+        html, body {
+    height: 100%; 
+    margin: 0; 
+}
+
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background: linear-gradient(to bottom, #ffffff, #234467bd); 
+            background-attachment: fixed; 
+            background-size: cover; 
+}
+            
+        
+        div {
+            background-color: rgba(0,0,0,0.8);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            padding: 80px;
+            border-radius: 25px;
+            color: aliceblue;
+            
+        }
+        input{
+            padding: 25px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+        button{
+            background-color:#234467;
+            border: none;
+            padding: 15px;
+            width:100%;
+            border-radius: 10px;
+            color:aliceblue;
+            
+        }
+        button:hover{
+            background-color: #43648a;
+            cursor: pointer;
+        }
+        h2{
+            text-align: center;
+            font-size: 30px;
+
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
+    <div>
         <h2>Login</h2>
+        <br>
         <form method="post" action="">
-            <label for="usuario">Usuário:</label>
-            <input type="text" name="usuario" required>
-            <label for="senha">Senha:</label>
-            <input type="password" name="senha" required>
+            <label for="usuario"></label>
+            <input type="text" name="usuario" placeholder="Admin" required>
+            <br>
+            <br>
+            <label for="senha"></label>
+            <input type="password" name="senha" placeholder="Senha" required>
+            <br>
+            <br>
             <button type="submit">Entrar</button>
             <?php if (isset($error)) echo "<p class='message error'>$error</p>"; ?>
         </form>
     </div>
 </body>
-</html>
