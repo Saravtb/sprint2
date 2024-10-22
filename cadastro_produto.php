@@ -11,10 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($id) {
         $sql = "UPDATE produtos SET fornecedor_id='$fornecedor_id', nome='$nome', descricao='$descricao', preco='$preco' WHERE id='$id'";
-        $mensagem = "Produto atualizado com sucesso!";
+        $mensagem = "Serviço atualizado com sucesso!";
     } else {
         $sql = "INSERT INTO produtos (fornecedor_id, nome, descricao, preco) VALUES ('$fornecedor_id', '$nome', '$descricao', '$preco')";
-        $mensagem = "Produto cadastrado com sucesso!";
+        $mensagem = "Serviço cadastrado com sucesso!";
     }
 
     if ($conn->query($sql) !== TRUE) {
@@ -26,9 +26,9 @@ if (isset($_GET['delete_id'])) {
     $delete_id = $_GET['delete_id'];
     $sql = "DELETE FROM produtos WHERE id='$delete_id'";
     if ($conn->query($sql) === TRUE) {
-        $mensagem = "Produto excluído com sucesso!";
+        $mensagem = "Serviço excluído com sucesso!";
     } else {
-        $mensagem = "Erro ao excluir produto: " . $conn->error;
+        $mensagem = "Erro ao excluir serviço: " . $conn->error;
     }
 }
 
@@ -47,15 +47,30 @@ $fornecedores = $conn->query("SELECT id, nome FROM fornecedores");
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastro de Produto</title>
+    <title>Cadastro de Serviço</title>
     <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Cadastro de Produto</h2>
+<header class="header">
+    <div class="logo">
+        <h1>Hidratec</h1>
+    </div>
+    <nav class="navigation">
+        <ul>
+            <li><a href="index.php">Inicio</a></li>
+            <li><a href="cadastro_fornecedor.php">cadastro de funcionários</a></li>
+            <li><a href="cadastro_produto.php">cadastro de serviços</a></li>
+            <li><a href="listagem_produtos.php">lista de serviços</a></li>
+            <li><a href="mes.php">Destaques do Mês</a></li>
+            <li><a href="login.php">Sair</a></li>
+        </ul>
+    </nav>
+</header>
+    <div class="container1">
+        <h2>Cadastro de Serviço</h2>
         <form method="post" action="">
             <input type="hidden" name="id" value="<?php echo $produto['id'] ?? ''; ?>">
-            <label for="fornecedor_id">Fornecedor:</label>
+            <label for="fornecedor_id">Funcionários</label>
             <select name="fornecedor_id" required>
                 <?php while ($row = $fornecedores->fetch_assoc()): ?>
                     <option value="<?php echo $row['id']; ?>" <?php if ($produto && $produto['fornecedor_id'] == $row['id']) echo 'selected'; ?>><?php echo $row['nome']; ?></option>
@@ -71,7 +86,7 @@ $fornecedores = $conn->query("SELECT id, nome FROM fornecedores");
         </form>
         <?php if (isset($mensagem)) echo "<p class='message " . ($conn->error ? "error" : "success") . "'>$mensagem</p>"; ?>
 
-        <h2>Listagem de Produtos</h2>
+        <h2>Listagem de serviços</h2>
         <table>
             <tr>
                 <th>ID</th>
@@ -95,7 +110,6 @@ $fornecedores = $conn->query("SELECT id, nome FROM fornecedores");
             </tr>
             <?php endwhile; ?>
         </table>
-        <a href="index.php">Voltar</a>
     </div>
 </body>
 </html>
