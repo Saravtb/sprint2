@@ -10,10 +10,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($id) {
         $sql = "UPDATE fornecedores SET nome='$nome', email='$email', telefone='$telefone' WHERE id='$id'";
-        $mensagem = "Fornecedor atualizado com sucesso!";
+        $mensagem = "Funcionário atualizado com sucesso!";
     } else {
         $sql = "INSERT INTO fornecedores (nome, email, telefone) VALUES ('$nome', '$email', '$telefone')";
-        $mensagem = "Fornecedor cadastrado com sucesso!";
+        $mensagem = "Funcionário cadastrado com sucesso!";
     }
 
     if ($conn->query($sql) !== TRUE) {
@@ -25,9 +25,9 @@ if (isset($_GET['delete_id'])) {
     $delete_id = $_GET['delete_id'];
     $sql = "DELETE FROM fornecedores WHERE id='$delete_id'";
     if ($conn->query($sql) === TRUE) {
-        $mensagem = "Fornecedor excluído com sucesso!";
+        $mensagem = "Funcionário excluído com sucesso!";
     } else {
-        $mensagem = "Erro ao excluir fornecedor: " . $conn->error;
+        $mensagem = "Erro ao excluir funcionário: " . $conn->error;
     }
 }
 
@@ -48,8 +48,23 @@ if (isset($_GET['edit_id'])) {
     <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Cadastro de Fornecedor</h2>
+<header class="header">
+    <div class="logo">
+        <h1>Hidratec</h1>
+    </div>
+    <nav class="navigation">
+        <ul>
+            <li><a href="index.php">Inicio</a></li>
+            <li><a href="cadastro_fornecedor.php">cadastro de funcionários</a></li>
+            <li><a href="cadastro_produto.php">cadastro de serviços</a></li>
+            <li><a href="listagem_produtos.php">lista de serviços</a></li>
+            <li><a href="mes.php">Destaques do Mês</a></li>
+            <li><a href="login.php">Sair</a></li>
+        </ul>
+    </nav>
+</header>
+    <div class="container1">
+        <h2>Cadastro de Funcionário</h2>
         <form method="post" action="">
             <input type="hidden" name="id" value="<?php echo $fornecedor['id'] ?? ''; ?>">
             <label for="nome">Nome:</label>
@@ -62,7 +77,7 @@ if (isset($_GET['edit_id'])) {
         </form>
         <?php if (isset($mensagem)) echo "<p class='message " . ($conn->error ? "error" : "success") . "'>$mensagem</p>"; ?>
 
-        <h2>Listagem de Fornecedores</h2>
+        <h2>Listagem de Funcionários</h2>
         <table>
             <tr>
                 <th>ID</th>
@@ -84,7 +99,7 @@ if (isset($_GET['edit_id'])) {
             </tr>
             <?php endwhile; ?>
         </table>
-        <a href="index.php">Voltar</a>
+      
     </div>
 </body>
 </html>
