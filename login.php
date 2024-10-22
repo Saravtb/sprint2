@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
         
         div {
-            background-color: rgba(0,0,0,0.8);
+            background-color: rgba(0,0,0,0.7);
             position: absolute;
             top: 50%;
             left: 50%;
@@ -70,6 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         h2{
             text-align: center;
             font-size: 30px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
         }
     </style>
